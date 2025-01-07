@@ -145,7 +145,17 @@ body {
     margin-bottom: 15px;
 }
 
-.input-group input {
+.input-group input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #e5e5ea;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f2f2f7;
+    color: #8e8e93;
+}
+
+.input-group input[type="number"] {
     flex: 1;
     padding: 12px;
     border: 1px solid #e5e5ea;
@@ -153,24 +163,13 @@ body {
     font-size: 16px;
 }
 
-.input-group button {
+.input-group .add-btn {
     padding: 12px 20px;
     background-color: #007aff;
     color: #fff;
     border: none;
     border-radius: 8px;
-}
-
-.input-group .add-btn {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border-radius: 22px;
-    background-color: #007aff;
-    color: #fff;
-    font-size: 24px;
-    line-height: 44px;
-    text-align: center;
+    font-size: 16px;
 }
 
 #investmentList {

@@ -52,30 +52,31 @@ function createCalendar() {
 
 function calculateDayProfit(date) {
     if (!investments[date]) return 0;
-    return investments[date].items.reduce((sum, item) => sum + item.amount, 0);
+    return investments[date].items[0].amount;
 }
 
 function showModal(date) {
     currentEditingDate = date;
     const modal = document.getElementById('editModal');
     const modalDate = document.getElementById('modalDate');
+    const amountInput = document.getElementById('investmentAmount');
     modalDate.textContent = date;
     
-    // 加载已有的投资记录
-    tempInvestments = investments[date]?.items || [];
-    updateInvestmentList();
-    
-    // 清空输入框
-    document.getElementById('investmentName').value = '';
-    document.getElementById('investmentAmount').value = '';
+    if (investments[date]) {
+        const totalProfit = calculateDayProfit(date);
+        amountInput.value = totalProfit;
+    } else {
+        amountInput.value = '';
+    }
     
     modal.classList.remove('hidden');
+    amountInput.focus();
 }
 
 function closeModal() {
     const modal = document.getElementById('editModal');
     modal.classList.add('hidden');
-    tempInvestments = [];
+    document.getElementById('investmentAmount').value = '';
 }
 
 function addInvestmentItem() {
@@ -120,17 +121,25 @@ function removeInvestmentItem(index) {
 }
 
 function saveDetails() {
-    if (tempInvestments.length > 0) {
-        investments[currentEditingDate] = {
-            items: [...tempInvestments]
-        };
-    } else {
-        delete investments[currentEditingDate];
+    const amount = parseFloat(document.getElementById('investmentAmount').value);
+    
+    if (isNaN(amount)) {
+        alert('请输入有效的金额');
+        return;
     }
     
+    investments[currentEditingDate] = {
+        items: [{
+            name: '伦敦金',
+            amount: amount
+        }]
+    };
+    
     saveUserData();
+    
     createCalendar();
     updateMonthlyTotal();
+    
     closeModal();
 }
 

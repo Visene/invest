@@ -64,14 +64,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group">
-                        <input type="text" id="investmentName" placeholder="投资项目">
+                        <input type="text" id="investmentName" value="伦敦金" readonly>
                         <input type="number" id="investmentAmount" placeholder="收益金额">
-                        <button class="add-btn" onclick="addInvestmentItem()">+</button>
+                        <button onclick="saveDetails()" class="add-btn">保存</button>
                     </div>
                     <div id="investmentList"></div>
-                </div>
-                <div class="modal-footer">
-                    <button onclick="saveDetails()">保存</button>
                 </div>
             </div>
         </div>
