@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>投资收益记录</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 登录界面 -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>登录</h2>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="用户名">
+                    <input type="password" id="password" placeholder="密码">
+                </div>
+                <button onclick="login()" class="login-btn">登录</button>
+                <button onclick="register()" class="register-btn">注册</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主界面 -->
+    <div id="mainContent" class="container hidden">
+        <div class="calendar-header">
+            <button class="nav-btn" onclick="previousMonth()">&lt;</button>
+            <div class="date-selector">
+                <select id="yearSelect" onchange="updateCalendar()"></select>
+                <select id="monthSelect" onchange="updateCalendar()"></select>
+            </div>
+            <button class="nav-btn" onclick="nextMonth()">&gt;</button>
+        </div>
+
+        <!-- 添加月度统计 -->
+        <div class="monthly-summary">
+            <div class="summary-item">
+                <span>当月总收益：</span>
+                <span id="monthlyTotal" class="summary-amount">0</span>
+            </div>
+        </div>
+
+        <div class="weekdays">
+            <div>日</div>
+            <div>一</div>
+            <div>二</div>
+            <div>三</div>
+            <div>四</div>
+            <div>五</div>
+            <div>六</div>
+        </div>
+
+        <div id="calendar"></div>
+
+        <!-- 编辑弹窗 -->
+        <div id="editModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalDate"></h2>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" id="investmentName" placeholder="投资项目">
+                        <input type="number" id="investmentAmount" placeholder="收益金额">
+                        <button class="add-btn" onclick="addInvestmentItem()">+</button>
+                    </div>
+                    <div id="investmentList"></div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="saveDetails()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
